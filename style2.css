@@ -293,6 +293,9 @@ input {
 }
 
 /*=============== Settings Icon ===============*/
+.settings-icon-visibility {
+  display: none;
+}
 
 .settings-icon {
   position: fixed;

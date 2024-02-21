@@ -26,7 +26,7 @@
 <body>
    <header class="header" id="header">
 
-    <div class="settings-icon" id="settings-icon">
+    <div class="settings-icon settings-icon-visibility" id="settings-icon">
       <ion-icon name="settings-outline"></ion-icon>
     </div>
   
@@ -481,43 +481,31 @@
 
   <script>
 
+      let flag = true;
       function checkToolParameter() {
+    
           var currentUrl = window.location.href;
 
-          return currentUrl.includes('tool=true');
+          if(currentUrl.includes('tool=true')) {
+            document.getElementById("settings-icon").classList.toggle('settings-icon-visibility');
+          }
+
+          document.getElementById("settings-icon").addEventListener("click", function() {
+
+            if(flag) {
+              document.getElementById('tool-overlay').style.display = 'block';
+              flag = !flag;
+            }
+            else {
+              document.getElementById('tool-overlay').style.display = 'none';
+              flag = !flag;
+            }
+          });
+
         }
-      document.getElementById("settings-icon").addEventListener("click", function() {
+      
+      checkToolParameter()
 
-          if(!checkToolParameter()) {
-            let currentUrl = window.location.href;
-            let separator = currentUrl.includes("?") ? "" : "?";
-            let newUrl = currentUrl + separator + "tool=true";
-            window.location.href = newUrl;
-          }
-
-          else {
-            document.getElementById('tool-overlay').style.display = 'none';
-            var currentUrl = window.location.href;
-            var newUrl = currentUrl.replace(/[?&]tool=true/, '');
-            window.location.href = newUrl;
-          }
-      });
-    
-    function getUrlParameter(name) {
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(window.location.href);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-    
-    var toolParam = getUrlParameter('tool');
-    if (toolParam) {
-        
-        document.getElementById('tool-overlay').style.display = 'block';
-    }
 </script>
 
 
