@@ -18,17 +18,18 @@
 
   <title>Responsive Website Travel</title>
   <link rel="stylesheet" href="style2.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons.js"></script>
   
 </head>
-
-
-
-
-
 
 <body>
    <header class="header" id="header">
 
+    <div class="settings-icon" id="settings-icon">
+      <ion-icon name="settings-outline"></ion-icon>
+    </div>
+  
     <div id="tool-overlay" style="display: none;">
         <!-- Include the HTML content of your tool here -->
         <!-- Make sure to style the overlay appropriately -->
@@ -479,6 +480,28 @@
 
 
   <script>
+
+      function checkToolParameter() {
+          var currentUrl = window.location.href;
+
+          return currentUrl.includes('tool=true');
+        }
+      document.getElementById("settings-icon").addEventListener("click", function() {
+
+          if(!checkToolParameter()) {
+            let currentUrl = window.location.href;
+            let separator = currentUrl.includes("?") ? "" : "?";
+            let newUrl = currentUrl + separator + "tool=true";
+            window.location.href = newUrl;
+          }
+
+          else {
+            document.getElementById('tool-overlay').style.display = 'none';
+            var currentUrl = window.location.href;
+            var newUrl = currentUrl.replace(/[?&]tool=true/, '');
+            window.location.href = newUrl;
+          }
+      });
     
     function getUrlParameter(name) {
         name = name.replace(/[\[\]]/g, "\\$&");

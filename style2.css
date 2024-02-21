@@ -292,6 +292,35 @@ input {
   left: 0;
 }
 
+/*=============== Settings Icon ===============*/
+
+.settings-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 999;
+  animation: floatIcon 2s ease infinite alternate;
+}
+
+.settings-icon ion-icon {
+  font-size: 30px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes floatIcon {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
 /*=============== HOME ===============*/
 .home__img {
   position: absolute;
